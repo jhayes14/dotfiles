@@ -40,4 +40,7 @@ fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo 'Downloading tmux-plug...'
 # type this in terminal if tmux is already running
-tmux source ~/dotfiles/tmux.conf
+tmux source ~/.tmux.conf
+
+
+# Need to ctr-b + I to install tmux plugins
