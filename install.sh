@@ -41,7 +41,3 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 echo 'Downloading tmux-plug...'
 # type this in terminal if tmux is already running
 tmux source ~/.tmux.conf
-
-echo "Please enter ^b + I: "
-read input_variable
-echo "Tmux plugins installs"
