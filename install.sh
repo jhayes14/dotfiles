@@ -15,17 +15,18 @@ fi
 
 # Backup old setup (-f for overwriting old backups).
 [ -e ~/.vimrc ] && (rm -rf ~/.vimrc.bak; mv ~/.vimrc ~/.vimrc.bak)
-[ -e ~/.gvimrc ] && (rm -rf ~/.gvimrc.bak; mv ~/.gvimrc ~/.gvimrc.bak)
 [ -e ~/.vim ] && (rm -rf ~/.vim.bak; mv ~/.vim ~/.vim.bak)
+[ -e ~/.tmux.conf ] && (rm -rf ~/.tmux.conf.bak; mv ~/.tmux.conf ~/.tmux.conf.bak)
 
 # Clone and install configuration.
-git clone https://github.com/jhayes14/dotfiles ~/.dotfiles
+git clone https://github.com/jhayes14/dotfiles ~/dotfiles
 echo 'Downloading vim-plug...'
 curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Set up symbolic links.
-ln -s ~/.dotfiles/vimrc/vimrc ~/.vimrc
+ln -s ~/dotfiles/vimrc ~/.vimrc
+ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 # Execute install.
 if vim --version >/dev/null 2>&1; then
@@ -35,3 +36,12 @@ else
     echo "Please, install it, then run:"
     echo "  vim +PlugInstall +qall"
 fi
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo 'Downloading tmux-plug...'
+# type this in terminal if tmux is already running
+tmux source ~/.tmux.conf
+
+echo "Please enter ^b + I: "
+read input_variable
+echo "Tmux plugins installs"
