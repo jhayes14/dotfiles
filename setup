@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Clone and install configuration.
+#git clone https://github.com/danirod/vimrc ~/.vim
+echo 'Downloading vim-plug...'
+curl -sfLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+# Install tmux plugin manager
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   ~/.tmux/plugins/tpm/bin/install_plugins
+fi
+
+if [ ! -d ~/.tmux/resurrect ]; then
+   mkdir -p ~/.tmux/resurrect
+fi
+
+# Configure vim
+ln -sf `pwd`/.vimrc ~
+# Execute install.
+if vim --version >/dev/null 2>&1; then
+    vim +PlugInstall +qall
+else
+    echo "You don't have Vim installed at this moment."
+    echo "Please, install it, then run:"
+    echo "  vim +PlugInstall +qall"
+fi
+
+# Configure tmux
+ln -sf `pwd`/.tmux.conf ~
+
+tmux source-file ~/.tmux.conf

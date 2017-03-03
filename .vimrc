@@ -15,6 +15,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-buftabline'
 Plug 'davidhalter/jedi-vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-sleuth'
+Plug 'tommcdo/vim-lion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -25,7 +31,11 @@ filetype plugin indent on
 :set expandtab
 :set number
 :set showmatch
-:set showcmd 
+:set showmode           " show insert/visual/normal in the status line
+:set nospell            " don't spellcheck by default
+:set spl=en_us          " use English for spellchecking
+:set showcmd
+:set ruler              " show the line number on the bar
 :set cursorline          " highlight current line
 :set wildmenu            " visual autocomplete for command menu
 :set incsearch           " search as characters are entered
@@ -57,3 +67,27 @@ endif
 
 " When searching try to be smart about cases 
 :set smartcase
+
+let g:airline_powerline_fonts = 1
+:let g:airline#extensions#tabline#enabled = 1
+:let g:airline_theme='badwolf'
+:set t_Co=256
+:set laststatus=2
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
